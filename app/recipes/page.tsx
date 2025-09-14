@@ -24,7 +24,7 @@ export default async function Recipespage() {
       title: 'オムライス',
       imageUrl: 'https://images.microcms-assets.io/assets/350e9469fdfe46fca67affb04137957c/99c12ef0fe534a0b85d8a6d0d063a21c/lunch2.jpeg',
     },
-  ]
+    ]
 
     return (
         <div className="min-h-screen bg-amber-200">
