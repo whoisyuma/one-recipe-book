@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, ChangeEvent } from 'react'
+import { createRecipe } from './actions'
 
 export default function RecipeCreateForm() {
     const [title, setTitle] = useState('')
@@ -65,12 +66,13 @@ export default function RecipeCreateForm() {
             <div className="max-w-3xl mx-auto py-12 px-5 bg-white rounded">
                 <h1 className="text-3xl font-bold mb-8 text-gray-800">レシピを作成</h1>
 
-                <form>
+                <form action={createRecipe}>
                 {/* タイトル */}
                 <div className="mb-6">
                     <label className="block mb-2 font-semibold text-gray-700">タイトル</label>
                     <input
                         type="text"
+                        name='title'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="例）おいしいカレー"
@@ -161,6 +163,9 @@ export default function RecipeCreateForm() {
                         手順を追加
                     </button>
                 </div>
+
+                <input type="hidden" name="ingredients" value={JSON.stringify(ingredients)} />
+                <input type="hidden" name="steps" value={JSON.stringify(steps)} />
 
                 {/* 送信ボタン*/}
                 <button
