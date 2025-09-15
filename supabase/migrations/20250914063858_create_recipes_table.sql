@@ -7,3 +7,13 @@ create table recipes (
   steps text[],
   created_at timestamp with time zone default timezone('utc', now())
 );
+
+-- RLSを有効化
+ALTER TABLE recipes ENABLE ROW LEVEL SECURITY;
+
+-- 自分のレシピだけ操作可能なポリシーを作成
+CREATE POLICY "Users can manage their own recipes" ON recipes
+FOR ALL
+TO authenticated
+USING (user_id = auth.uid())
+WITH CHECK (user_id = auth.uid());
