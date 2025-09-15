@@ -2,15 +2,17 @@
 
 import { useState, ChangeEvent } from 'react'
 import { createRecipe } from './actions'
+import { createClient } from '@/utils/supabase/client'
 
 export default function RecipeCreateForm() {
+    const supabase = createClient()
     const [title, setTitle] = useState('')
     const [imageFile, setImageFile] = useState<File | null>(null)
     const [imagePreview, setImagePreview] = useState<string | null>(null)
     const [ingredients, setIngredients] = useState([{ name: '', amount: '' }])
     const [steps, setSteps] = useState([''])
 
-    //   画像の追加
+    //   画像のプレビュー
     function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0] ?? null
         setImageFile(file)
@@ -22,6 +24,43 @@ export default function RecipeCreateForm() {
             setImagePreview(null)
         }
     }
+
+    // 画像をストレージに保存しserver actionsからcreateRecipe関数を呼び出す
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        let imageUrl = null;
+
+        // まず画像をストレージにアップロード
+        if (imageFile) {
+            const fileExt = imageFile.name.split('.').pop()
+            const fileName = `${crypto.randomUUID()}.${fileExt}`
+            const filePath = `recipes/${fileName}`
+
+            const { error: uploadError } = await supabase.storage.from('recipe-images').upload(filePath, imageFile)
+
+            if (uploadError) {
+                alert('画像のアップロードに失敗しました')
+                console.error('error', uploadError.message)
+                return
+            }
+
+            // ストレージから画像のURLを取得
+            const { data } = supabase.storage.from('recipe-images').getPublicUrl(filePath)
+
+            imageUrl = data.publicUrl
+        }
+
+        // server actionsの呼び出し
+        const formData = new FormData()
+        formData.append('title', title)
+        formData.append('imageUrl', imageUrl ?? '')
+        formData.append('ingredients', JSON.stringify(ingredients))
+        formData.append('steps', JSON.stringify(steps))
+
+        await createRecipe(formData)
+    }
+        
 
     //材料の管理
     function updateIngredient(index: number, key: 'name' | 'amount', value: string) {
@@ -66,7 +105,7 @@ export default function RecipeCreateForm() {
             <div className="max-w-3xl mx-auto py-12 px-5 bg-white rounded">
                 <h1 className="text-3xl font-bold mb-8 text-gray-800">レシピを作成</h1>
 
-                <form action={createRecipe}>
+                <form onSubmit={handleSubmit}>
                 {/* タイトル */}
                 <div className="mb-6">
                     <label className="block mb-2 font-semibold text-gray-700">タイトル</label>
@@ -83,7 +122,7 @@ export default function RecipeCreateForm() {
                 {/* 画像アップロード */}
                 <div className="mb-8">
                     <label className="block mb-2 font-semibold text-gray-700">メイン画像</label>
-                    <input type="file" accept="image/*" onChange={handleImageChange} className='rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400'/>
+                    <input type="file" name='image' accept="image/*" onChange={handleImageChange} className='rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400'/>
                     {imagePreview && (
                     <img
                         src={imagePreview}
