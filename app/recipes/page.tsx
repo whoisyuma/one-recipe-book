@@ -27,7 +27,7 @@ export default async function Recipespage() {
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {recipes.map((recipe) => (
-                            <Link key={recipe.id} href='/recipes/{id}'>
+                            <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
                                 <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
                                     <img
                                         src={recipe.image_url}
