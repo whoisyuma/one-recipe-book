@@ -36,42 +36,44 @@ export default async function RecipeDetailPage({ params }: {params: {id: string}
 
     return (
     <div className="min-h-screen bg-amber-200">
-            <div className="max-w-3xl mx-auto py-12 px-5">
-                <div className="flex flex-col justify-between items-start mb-4">
-                    {recipe.image_url && (
-                        <img
-                            src={recipe.image_url}
-                            alt={recipe.title}
-                            className="w-full h-64 object-cover rounded-md shadow-md mb-6"
-                        />
-                    )}
-                    <h1 className="text-3xl font-bold text-gray-800">{recipe.title}</h1>
-
-                    {/* <RecipeActions recipe={recipe}/> */}
-                </div>
-
-                <div>
-                    <h2>材料</h2>
-                    <ul>
-                        {recipe.ingredients?.map((ingredient: {name: string, amount: string}, index: number) => (
-                            <li key={index}>
-                                {ingredient.name}:{ingredient.amount}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-
-                <div>
-                    <h2>手順</h2>
-                    <ol className="list-decimal list-inside">
-                        {recipe.steps?.map((step: string, index: number) => (
-                            <li key={index}>{step}</li>
-                        ))}
-                    </ol>
-                </div>
-
+        <div className="max-w-3xl mx-auto py-12 px-5">
+            <div className="flex flex-col justify-between items-start mb-15">
+                {recipe.image_url && (
+                    <img
+                        src={recipe.image_url}
+                        alt={recipe.title}
+                        className="w-full h-80 object-cover rounded-md shadow-md mb-6"
+                    />
+                )}
+                <h1 className="text-3xl font-bold text-gray-800">{recipe.title}</h1>
             </div>
+
+            <div className='mb-5 max-w-1/2'>
+                <h2 className='text-2xl font-bold text-gray-800 mb-3'>材料</h2>
+                <ul className='list-disc ml-5'>
+                    {recipe.ingredients?.map((ingredient: {name: string, amount: string}, index: number) => (
+                        <li key={index}>
+                            <div className="flex justify-between mb-1 border-b">
+                                <span>{ingredient.name}</span>
+                                <span>{ingredient.amount}</span>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <div className='mb-5'>
+                <h2 className='text-2xl font-bold text-gray-800 mb-3'>手順</h2>
+                <ol className="list-decimal ml-5">
+                    {recipe.steps?.map((step: string, index: number) => (
+                        <li key={index}>
+                            <p className='pl-1 mb-1'>{step}</p>
+                        </li>
+                    ))}
+                </ol>
+            </div>
+
         </div>
+    </div>
   )
 }
