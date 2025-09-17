@@ -1,4 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
+import Link from 'next/link';
 import { redirect } from 'next/navigation'
 
 type Ingredient = {
@@ -48,9 +49,9 @@ export default async function RecipeDetailPage({ params }: {params: {id: string}
                 <h1 className="text-3xl font-bold text-gray-800">{recipe.title}</h1>
             </div>
 
-            <div className='mb-5 max-w-1/2'>
+            <div className='mb-15 max-w-1/2'>
                 <h2 className='text-2xl font-bold text-gray-800 mb-3'>材料</h2>
-                <ul className='list-disc ml-5'>
+                <ul>
                     {recipe.ingredients?.map((ingredient: {name: string, amount: string}, index: number) => (
                         <li key={index}>
                             <div className="flex justify-between mb-1 border-b">
@@ -62,7 +63,7 @@ export default async function RecipeDetailPage({ params }: {params: {id: string}
                 </ul>
             </div>
 
-            <div className='mb-5'>
+            <div className='mb-10'>
                 <h2 className='text-2xl font-bold text-gray-800 mb-3'>手順</h2>
                 <ol className="list-decimal ml-5">
                     {recipe.steps?.map((step: string, index: number) => (
@@ -73,6 +74,15 @@ export default async function RecipeDetailPage({ params }: {params: {id: string}
                 </ol>
             </div>
 
+            <div className='flex justify-between gap-2'>
+                <Link href='/' className='w-1/2 text-center py-3 bg-amber-400 text-white rounded-md hover:bg-amber-500'>レシピを編集</Link>
+                <form className='w-1/2 text-center py-3 bg-red-500 text-white rounded-md hover:bg-red-600'>
+                    <input type="hidden" name='id' value={recipe.id}/>
+                    <button type='submit'>
+                        レシピを削除
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
   )
