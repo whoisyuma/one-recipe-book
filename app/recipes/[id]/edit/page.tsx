@@ -115,7 +115,7 @@ export default function EditRecipePage({ params }: { params: Promise<{ id: strin
     }
 
     return (
-        <div className="min-h-screen bg-amber-200">
+        <div className="min-h-screen bg-amber-200 py-15">
             <div className="max-w-3xl mx-auto py-12 px-5 bg-white rounded">
                 <h1 className="text-3xl font-bold mb-8 text-gray-800">レシピを編集</h1>
 
@@ -127,65 +127,65 @@ export default function EditRecipePage({ params }: { params: Promise<{ id: strin
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full rounded-md border px-3 py-2"
+                            className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
                         />
                     </div>
 
                     {/* 画像 */}
-                    <div className="mb-6">
+                    <div className="mb-8">
                         <label className="block mb-2 font-semibold text-gray-700">メイン画像</label>
-                        <input type="file" onChange={handleImageChange} />
+                        <input type="file" onChange={handleImageChange} className='rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400'/>
                         {imagePreview && (
-                            <img src={imagePreview} alt="プレビュー" className="mt-4 max-w-xs rounded shadow" />
+                            <img src={imagePreview} alt="プレビュー" className="mt-4 max-w-xs rounded-md border border-gray-300 shadow-sm"/>
                         )}
                     </div>
 
                     {/* 材料 */}
-                    <div className="mb-6">
+                    <div className="mb-8">
                         <label className="block mb-2 font-semibold text-gray-700">材料</label>
                         {ingredients.map((ing, i) => (
-                            <div key={i} className="flex gap-2 mb-2">
+                            <div key={i} className="flex gap-2 mb-3">
                                 <input
                                     type="text"
                                     placeholder="材料名"
                                     value={ing.name}
                                     onChange={(e) => updateIngredient(i, 'name', e.target.value)}
-                                    className="flex-1 rounded-md border px-2 py-1"
+                                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
                                 />
                                 <input
                                     type="text"
                                     placeholder="量"
                                     value={ing.amount}
                                     onChange={(e) => updateIngredient(i, 'amount', e.target.value)}
-                                    className="w-24 rounded-md border px-2 py-1"
+                                    className="w-24 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
                                 />
-                                <button type="button" onClick={() => removeIngredient(i)} disabled={ingredients.length === 1}>
+                                <button type="button" onClick={() => removeIngredient(i)} disabled={ingredients.length === 1} className="text-red-500 font-bold px-2">
                                     ×
                                 </button>
                             </div>
                         ))}
-                        <button type="button" onClick={addIngredient} className="mt-2 text-sm text-blue-600">
+                        <button type="button" onClick={addIngredient} className="mt-2 px-4 py-1 bg-amber-400 text-white rounded-md hover:bg-amber-500">
                             材料を追加
                         </button>
                     </div>
 
                     {/* 手順 */}
-                    <div className="mb-6">
+                    <div className="mb-8">
                         <label className="block mb-2 font-semibold text-gray-700">手順</label>
                         {steps.map((step, i) => (
-                            <div key={i} className="flex gap-2 mb-2">
+                            <div key={i} className="flex gap-2 mb-3">
                                 <textarea
                                     rows={2}
                                     value={step}
                                     onChange={(e) => updateStep(i, e.target.value)}
-                                    className="flex-1 rounded-md border px-2 py-1"
+                                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-amber-400"
                                 />
-                                <button type="button" onClick={() => removeStep(i)} disabled={steps.length === 1}>
+                                <button type="button" onClick={() => removeStep(i)} disabled={steps.length === 1} className="text-red-500 font-bold px-2">
                                     ×
                                 </button>
                             </div>
                         ))}
-                        <button type="button" onClick={addStep} className="mt-2 text-sm text-blue-600">
+                        <button type="button" onClick={addStep} className="mt-2 px-4 py-1 bg-amber-400 text-white rounded-md hover:bg-amber-500">
                             手順を追加
                         </button>
                     </div>
