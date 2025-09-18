@@ -76,7 +76,7 @@ export default async function RecipeDetailPage({ params }: {params: {id: string}
             </div>
 
             <div className='flex justify-between gap-2'>
-                <Link href={`recipes/${recipe.id}/edit`} className='w-1/2 text-center py-3 bg-amber-400 text-white rounded-md hover:bg-amber-500'>レシピを編集</Link>
+                <Link href={`/recipes/${recipe.id}/edit`} className='w-1/2 text-center py-3 bg-amber-400 text-white rounded-md hover:bg-amber-500'>レシピを編集</Link>
                 <form action={deleteRecipe} className='w-1/2 text-center py-3 bg-red-500 text-white rounded-md hover:bg-red-600'>
                     <input type="hidden" name='id' value={recipe.id}/>
                     <button type='submit'>
