@@ -101,8 +101,8 @@ export default function RecipeCreateForm() {
     }
 
     return (
-        <div className="min-h-screen bg-amber-200 py-15">
-            <div className="max-w-3xl mx-auto py-12 px-5 bg-white rounded">
+        <div className="min-h-screen bg-amber-200 py-5 md:py-15">
+            <div className="max-w-3xl mx-2 lg:mx-auto py-12 px-5 bg-white rounded">
                 <h1 className="text-3xl font-bold mb-8 text-gray-800">レシピを作成</h1>
 
                 <form onSubmit={handleSubmit}>
@@ -116,13 +116,14 @@ export default function RecipeCreateForm() {
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="例）おいしいカレー"
                         className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                        required
                     />
                 </div>
 
                 {/* 画像アップロード */}
                 <div className="mb-8">
                     <label className="block mb-2 font-semibold text-gray-700">メイン画像</label>
-                    <input type="file" name='image' accept="image/*" onChange={handleImageChange} className='rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400'/>
+                    <input type="file" name='image' required accept="image/*" onChange={handleImageChange} className='rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400'/>
                     {imagePreview && (
                     <img
                         src={imagePreview}
@@ -143,6 +144,7 @@ export default function RecipeCreateForm() {
                                 value={ingredient.name}
                                 onChange={(e) => updateIngredient(i, 'name', e.target.value)}
                                 className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                                required
                             />
                             <input
                                 type="text"
@@ -150,6 +152,7 @@ export default function RecipeCreateForm() {
                                 value={ingredient.amount}
                                 onChange={(e) => updateIngredient(i, 'amount', e.target.value)}
                                 className="w-24 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                                required
                             />
                             <button
                                 type="button"
@@ -182,6 +185,7 @@ export default function RecipeCreateForm() {
                                 value={step}
                                 onChange={(e) => updateStep(i, e.target.value)}
                                 className="flex-1 rounded-md border border-gray-300 px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-amber-400"
+                                required
                             />
                             <button
                                 type="button"

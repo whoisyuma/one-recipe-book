@@ -44,13 +44,13 @@ export default async function RecipeDetailPage({ params }: {params: {id: string}
                     <img
                         src={recipe.image_url}
                         alt={recipe.title}
-                        className="w-full h-80 object-cover rounded-md shadow-md mb-6"
+                        className="w-full md:h-95 h-60 object-cover rounded-md shadow-md mb-6"
                     />
                 )}
                 <h1 className="text-3xl font-bold text-gray-800">{recipe.title}</h1>
             </div>
 
-            <div className='mb-15 max-w-1/2'>
+            <div className='mb-15 md:max-w-2/3 lg:max-w-1/2'>
                 <h2 className='text-2xl font-bold text-gray-800 mb-3'>材料</h2>
                 <ul>
                     {recipe.ingredients?.map((ingredient: {name: string, amount: string}, index: number) => (
