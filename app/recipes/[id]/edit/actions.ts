@@ -35,5 +35,5 @@ export async function updateRecipe(formData: FormData) {
     }
 
     revalidatePath(`/recipes/${id}`) // キャッシュ更新
-    redirect(`/recipes/${id}`)       // 詳細ページに遷移
+    redirect('/recipes')
 }
