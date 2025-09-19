@@ -7,8 +7,8 @@ import { updateRecipe } from './actions'
 
 type Ingredient = { name: string; amount: string }
 
-export default function EditRecipePage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params);
+export default function EditRecipePage({ params }: { params: { id: string } }) {
+    const { id } = params;
     const router = useRouter()
     const supabase = createClient()
     const [title, setTitle] = useState('')
