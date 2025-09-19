@@ -18,14 +18,14 @@ type Recipe = {
     created_at: string
 }
 
-interface RecipeDetailPageProps {
+interface PageProps {
     params: {
         id: string
     }
 }
 
-export default async function RecipeDetailPage({ params }: RecipeDetailPageProps) {
-    const { id } = await params
+export default async function RecipeDetailPage({ params }: PageProps) {
+    const { id } = params
     const supabase = await createClient()
 
     // 認証チェック
