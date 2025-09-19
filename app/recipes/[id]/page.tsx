@@ -18,7 +18,13 @@ type Recipe = {
     created_at: string
 }
 
-export default async function RecipeDetailPage({ params }: {params: {id: string}}) {
+interface RecipeDetailPageProps {
+    params: {
+        id: string
+    }
+}
+
+export default async function RecipeDetailPage({ params }: RecipeDetailPageProps) {
     const { id } = await params
     const supabase = await createClient()
 
