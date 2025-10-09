@@ -19,13 +19,11 @@ type Recipe = {
 }
 
 interface PageProps {
-    params: {
-        id: string
-    }
+    params: Promise<{ id: string }>
 }
 
 export default async function RecipeDetailPage({ params }: PageProps) {
-    const { id } = params
+    const { id } = await params;
     const supabase = await createClient()
 
     // 認証チェック
