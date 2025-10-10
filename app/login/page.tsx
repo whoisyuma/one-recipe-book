@@ -13,21 +13,28 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
 
     // ログインボタンの実装（成功すればrecipesページに遷移）
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsPending(true);
 
-        const {error} = await supabase.auth.signInWithPassword({email, password})
+        const { data, error } = await supabase.auth.signInWithPassword({email, password})
 
         setIsPending(false);
 
         if(error) {
             setError(error.message)
-        } else {
-            router.push("/recipes");
+            return;
         }
+
+        if (!data.user.confirmed_at) {
+            setMessage('メール認証が完了していません。メールを確認して認証を完了してください。')
+            return;
+        }
+
+        router.push("/recipes");
     }
 
     return (
@@ -50,7 +57,8 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                {error && <p className="text-red-500 mb-2">ログインに失敗しました</p>}
+                {error && <p className="text-red-500 mb-2 text-xs text-center">ログインに失敗しました。</p>}
+                {message && <p className="text-green-600 mb-2 text-xs text-center">{message}</p>}
                 <button type="submit" disabled={isPending} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
                     {isPending ? 'ログイン中...' : 'ログイン'}
                 </button>

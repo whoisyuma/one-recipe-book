@@ -23,7 +23,7 @@ export default async function Recipespage() {
         <div className="min-h-screen bg-amber-200">
             <div className="max-w-5xl mx-auto py-12 px-4">
                 {recipes.length === 0 ? (
-                    <p className="text-center text-gray-700">まだレシピがありません。</p>
+                    <p className="text-center text-gray-700">まだレシピが登録されていません。</p>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {recipes.map((recipe) => (

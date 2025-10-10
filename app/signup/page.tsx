@@ -13,19 +13,25 @@ export default function SignupPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
 
     // アカウント作成の機能実装(成功したらログインページに遷移)
     const handleSignup = async(e: React.FormEvent) => {
         e.preventDefault();
         setIsPending(true);
 
-        const {error} = await supabase.auth.signUp({email, password});
+        const { data, error } = await supabase.auth.signUp({email, password});
         setIsPending(false);
 
         if (error) {
             setError(error.message)
         } else {
-            router.push('/login')
+            if (!data.user?.confirmed_at) {
+                setMessage('確認メールを送信しました。メール認証を完了してログインしてください。')
+                setError('');
+            } else {
+                router.push('/login')
+            }
         }
     }
 
@@ -49,7 +55,8 @@ export default function SignupPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                {error && <p className="text-red-500 mb-2">新規登録に失敗しました</p>}
+                {error && <p className="text-red-500 mb-2 text-xs text-center">新規登録に失敗しました。</p>}
+                {message && <p className="text-green-600 mb-2 text-xs text-center">{message}</p>}
                 <button type="submit" disabled={isPending} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
                     {isPending ? '登録中...' : '新規登録'}
                 </button>
