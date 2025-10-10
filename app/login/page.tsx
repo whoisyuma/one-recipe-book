@@ -8,6 +8,8 @@ import Link from 'next/link';
 export default function LoginPage() {
     const router = useRouter()
     const supabase = createClient()
+    const [isPending, setIsPending] = useState(false)
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -15,7 +17,12 @@ export default function LoginPage() {
     // ログインボタンの実装（成功すればrecipesページに遷移）
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsPending(true);
+
         const {error} = await supabase.auth.signInWithPassword({email, password})
+
+        setIsPending(false);
+
         if(error) {
             setError(error.message)
         } else {
@@ -44,8 +51,8 @@ export default function LoginPage() {
                     required
                 />
                 {error && <p className="text-red-500 mb-2">ログインに失敗しました</p>}
-                <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-                    ログイン
+                <button type="submit" disabled={isPending} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                    {isPending ? 'ログイン中...' : 'ログイン'}
                 </button>
                 <p className="mt-4 text-sm text-center">
                     アカウントがない？

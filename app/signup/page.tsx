@@ -1,4 +1,5 @@
 'use client'
+
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,6 +8,8 @@ import { useState } from "react";
 export default function SignupPage() {
     const router = useRouter();
     const supabase = createClient();
+    const [isPending, setIsPending] = useState(false);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -14,7 +17,11 @@ export default function SignupPage() {
     // アカウント作成の機能実装(成功したらログインページに遷移)
     const handleSignup = async(e: React.FormEvent) => {
         e.preventDefault();
+        setIsPending(true);
+
         const {error} = await supabase.auth.signUp({email, password});
+        setIsPending(false);
+
         if (error) {
             setError(error.message)
         } else {
@@ -43,8 +50,8 @@ export default function SignupPage() {
                     required
                 />
                 {error && <p className="text-red-500 mb-2">新規登録に失敗しました</p>}
-                <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-                    登録
+                <button type="submit" disabled={isPending} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                    {isPending ? '登録中...' : '新規登録'}
                 </button>
                 <p className="mt-4 text-sm text-center">
                     すでにアカウントがある？
