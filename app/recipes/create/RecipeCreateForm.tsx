@@ -69,7 +69,7 @@ export default function RecipeCreateForm() {
             formData.append('ingredients', JSON.stringify(ingredients))
             formData.append('steps', JSON.stringify(steps))
 
-            await createRecipe(formData)
+            createRecipe(formData)
         })
 
     }
