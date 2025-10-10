@@ -1,9 +1,8 @@
 'use client'
 
 import { createClient } from "@/utils/supabase/client"
-import { ChangeEvent, useRef, useState, useTransition } from "react"
+import { ChangeEvent, useState, useTransition } from "react"
 import { createRecipe } from "./actions"
-import { useFormStatus } from "react-dom"
 
 function SubmitButton({ pending }: { pending: boolean }) {
     return (
