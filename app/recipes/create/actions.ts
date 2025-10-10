@@ -7,7 +7,7 @@ export async function createRecipe(formData: FormData) {
     const supabase = await createClient()
 
     const title = formData.get('title') as string
-    const imageUrl = formData.get('imageUrl') as File | null
+    const imageUrl = formData.get('imageUrl') as string
     const ingredients = JSON.parse(formData.get('ingredients') as string)
     const steps = JSON.parse(formData.get('steps') as string)
 
@@ -20,12 +20,11 @@ export async function createRecipe(formData: FormData) {
 
     // データをデータベースに保存
     const { error } = await supabase.from('recipes').insert({
+        user_id: user.id,
         title,
         ingredients,
         steps,
-        user_id: user.id,
         image_url: imageUrl,
-        created_at: new Date().toISOString()
     })
 
     if (error) {

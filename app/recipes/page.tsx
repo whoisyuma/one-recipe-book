@@ -6,14 +6,15 @@ export default async function Recipespage() {
     const supabase = await createClient()
 
     // ユーザー情報の取得
-    const { data: {session} } = await supabase.auth.getSession();
+    const { data: { user } } = await supabase.auth.getUser();
+    const { data: { session } } = await supabase.auth.getSession();
 
-    if (!session) {
+    if (!user || !session) {
         redirect('/login')
     }
 
     // データの取得
-    const { data: recipes, error } = await supabase.from('recipes').select('*');
+    const { data: recipes, error } = await supabase.from('recipes').select('*').eq('user_id', user.id);
 
     if (error) {
         return <p>データの取得に失敗しました。</p>
