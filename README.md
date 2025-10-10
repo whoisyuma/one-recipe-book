@@ -45,8 +45,8 @@
 - コメントやレビュー、いいね機能の追加
 
 ## 公開サイト
-<!-- こちらからデプロイ後のサイトをご覧いただけます：
-[]() -->
+こちらからデプロイ後のサイトをご覧いただけます：
+[https://one-recipe-book.vercel.app/login](https://one-recipe-book.vercel.app/login)
 
 ## デモアカウントでログイン体験できます
 
@@ -62,10 +62,10 @@
 ## デザイン
 
 ### モバイル版
-<!-- ![モバイル版のデザイン例]() -->
+![モバイル版のデザイン例](/public/mockup1.png)
 
 ### デスクトップ版
-<!-- ![デスクトップ版のデザイン例](/public/) -->
+![デスクトップ版のデザイン例](/public/mockup2.png)
 
 ## 連絡先
 以下から気軽にご連絡ください：
@@ -73,3 +73,79 @@
 
 ## 備考
 このアプリは学習用として作成しました。
+
+# One Recipe Book
+
+## Project Overview
+
+This is a personal recipe book app built with **Next.js (App Router)** and **Supabase**.  
+It includes user authentication, and allows users to create, edit, delete, view, and manage their own recipes.
+
+## Technologies Used
+
+- **Framework:** Next.js (App Router), React  
+- **Authentication:** Supabase Auth  
+- **Database:** Supabase  
+- **Language:** TypeScript  
+- **Styling:** Tailwind CSS  
+
+## Key Features
+
+- User authentication (Sign Up / Login)
+- Personalized recipe list for each user
+- Recipe detail pages
+- Create, edit, and delete recipes
+- Secure data access using Supabase RLS (Row-Level Security)
+- Mobile-friendly (Responsive Design)
+- Ingredients and instructions can be added one by one
+
+## What I Learned & Key Highlights
+
+- Implemented secure user-specific data handling using Supabase's RLS
+- Separated logic between Server Actions and UI components in Next.js
+- Implemented and managed authentication flow with Supabase
+- Managed the database schema using migrations
+- Enabled image uploads and integrated with Supabase Storage
+- Built a fully responsive UI with Tailwind CSS
+- Allowed users to add ingredients and steps as arrays, one at a time
+
+## Planned Features
+
+- English localization
+- Folder categorization (e.g., Chinese dishes, Japanese food, etc.)
+- Search functionality for recipes and ingredients
+- Toggle between public and private recipe visibility
+- Logout functionality
+- Add comments, reviews, and like features
+
+## Live Site
+
+You can try the deployed version here:  
+[https://one-recipe-book.vercel.app/login](https://one-recipe-book.vercel.app/login)
+
+## Try with a Demo Account
+
+A demo account is available so you can test all the features like posting, editing, and deleting recipes.
+
+| Email                | Password  |
+|----------------------|-----------|
+| demo@example.com     | demo1234  |
+
+*Note: Demo content may be deleted at any time. Feel free to explore.*
+
+## Design
+
+### Mobile View  
+![Mobile Mockup](/public/mockup1.png)
+
+### Desktop View  
+![Desktop Mockup](/public/mockup2.png)
+
+## Contact
+
+Feel free to reach out:  
+- Email: [whoisyuma.0913@gmail.com](mailto:whoisyuma.0913@gmail.com)
+
+## Notes
+
+This application was developed for learning purposes.
