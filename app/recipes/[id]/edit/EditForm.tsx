@@ -49,7 +49,7 @@ export default function EditForm({ recipeId }: EditProps) {
         }
 
         fetchRecipe()
-    }, [recipeId])
+    }, [recipeId, router, supabase])
     
     // 画像のプレビュー
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
