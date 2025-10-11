@@ -26,22 +26,25 @@ export default async function Recipespage() {
                 {recipes.length === 0 ? (
                     <p className="text-center text-gray-700">まだレシピが登録されていません。</p>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
                         {recipes.map((recipe) => (
-                            <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
-                                <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                                    <img
-                                        src={recipe.image_url}
-                                        alt={recipe.title}
-                                        className="w-full h-48 object-cover"
-                                    />
-                                    <div className="p-4">
-                                        <h2 className="text-lg font-semibold text-gray-800">{recipe.title}</h2>
-                                    </div>
+                            <li key={recipe.id}>
+                                <Link href={`/recipes/${recipe.id}`} className="flex items-center bg-white rounded-lg shadow-sm hover:shadow-md transition p-4 cursor-pointer">
+                                <img
+                                    src={recipe.image_url}
+                                    alt={recipe.title}
+                                    className="w-24 h-24 object-cover rounded-md flex-shrink-0"
+                                />
+                                <div className="ml-4 flex flex-col">
+                                    <h2 className="text-lg font-semibold text-gray-800">{recipe.title}</h2>
+                                    <time className="text-xs text-gray-500 mt-1">
+                                        {new Date(recipe.created_at).toLocaleDateString()}
+                                    </time>
                                 </div>
-                            </Link>
+                                </Link>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 )}
             </div>
         </div>
