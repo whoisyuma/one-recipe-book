@@ -42,7 +42,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
     return (
     <div className="min-h-screen bg-amber-200">
         <div className="max-w-3xl mx-auto py-12 px-5">
-            <div className="flex flex-col justify-between items-start mb-15">
+            <div className="flex flex-col justify-between items-start mb-10 lg:mb-15">
                 {recipe.image_url && (
                     <img
                         src={recipe.image_url}
@@ -53,26 +53,29 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                 <h1 className="text-3xl font-bold text-gray-800">{recipe.title}</h1>
             </div>
 
-            <div className='mb-15 md:max-w-2/3 lg:max-w-1/2'>
-                <h2 className='text-2xl font-bold text-gray-800 mb-3'>材料</h2>
+            <div className='mb-10 lg:mb-15 max-w-xl bg-white rounded-xl p-3 lg:p-5'>
+                <h2 className='text-2xl font-bold text-gray-800 mb-1'>材料</h2>
+                <div className="w-12 h-1 bg-amber-500 mb-4 rounded" />
                 <ul>
                     {recipe.ingredients?.map((ingredient: {name: string, amount: string}, index: number) => (
                         <li key={index}>
-                            <div className="flex justify-between mb-1 border-b">
-                                <span>{ingredient.name}</span>
-                                <span>{ingredient.amount}</span>
+                            <div className="flex justify-between py-2 border-b border-gray-200">
+                                <span className="font-medium text-gray-800">{ingredient.name}</span>
+                                <span className="text-gray-600">{ingredient.amount}</span>
                             </div>
                         </li>
                     ))}
                 </ul>
             </div>
 
-            <div className='mb-15'>
-                <h2 className='text-2xl font-bold text-gray-800 mb-3'>手順</h2>
-                <ol className="list-decimal ml-5">
+            <div className='mb-10 lg:mb-15 bg-white rounded-xl p-5'>
+                <h2 className='text-2xl font-bold text-gray-800 mb-1'>手順</h2>
+                <div className="w-12 h-1 bg-amber-500 mb-4 rounded" />
+                <ol>
                     {recipe.steps?.map((step: string, index: number) => (
-                        <li key={index}>
-                            <p className='pl-1 mb-1'>{step}</p>
+                        <li key={index} className="mb-3 flex">
+                            <span className="font-bold text-amber-500 mr-2">{index + 1}.</span>
+                            <p className='text-gray-700'>{step}</p>
                         </li>
                     ))}
                 </ol>
