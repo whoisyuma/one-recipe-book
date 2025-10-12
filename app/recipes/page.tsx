@@ -29,7 +29,7 @@ export default async function Recipespage() {
                     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
                         {recipes.map((recipe) => (
                             <li key={recipe.id}>
-                                <Link href={`/recipes/${recipe.id}`} className="flex items-center bg-white rounded-lg shadow-sm hover:shadow-md transition p-4 cursor-pointer">
+                                <Link href={`/recipes/${recipe.id}`} className="flex items-center bg-white rounded-lg shadow-sm hover:shadow-lg transform hover:scale-[1.02] transition duration-200 p-4 cursor-pointer">
                                 <img
                                     src={recipe.image_url}
                                     alt={recipe.title}
