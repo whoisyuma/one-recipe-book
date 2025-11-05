@@ -14,7 +14,7 @@ export default async function Recipespage() {
     }
 
     // データの取得
-    const { data: recipes, error } = await supabase.from('recipes').select('*').eq('user_id', user.id);
+    const { data: recipes, error } = await supabase.from('recipes').select('*').eq('user_id', user.id).order('created_at', { ascending: false });
 
     if (error) {
         return <p>データの取得に失敗しました。</p>
