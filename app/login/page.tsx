@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import Link from 'next/link';
 
@@ -15,7 +15,6 @@ export default function LoginPage() {
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
 
-    // ログインボタンの実装（成功すればrecipesページに遷移）
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsPending(true);
@@ -34,7 +33,7 @@ export default function LoginPage() {
             return;
         }
 
-        router.push("/recipes");
+        router.push("/folders");
     }
 
     return (
