@@ -3,7 +3,6 @@ import BackToFoldersPageButton from "@/components/BackFoldersPage";
 import Header from "@/components/Header";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 interface FolderPageProps {
   params: Promise<{
@@ -22,7 +21,7 @@ export default async function FoldersDetailPage({ params }: FolderPageProps) {
     .single();
 
   if (folderError || !folder) {
-    notFound();
+    console.error('フォルダの取得に失敗しました。', folderError.message);
   }
 
   const { data: recipes, error: recipesError } = await supabase
@@ -42,7 +41,7 @@ export default async function FoldersDetailPage({ params }: FolderPageProps) {
         <BackToFoldersPageButton />
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-0 md:mb-10 mt-5">
           <h1 className="text-3xl md:text-4xl font-bold">
-            Folder：{folder.name}
+            Folder：{folder?.name}
           </h1>
           <div className="flex justify-end mt-10 md:mt-0">
             <AddRecipeButton />

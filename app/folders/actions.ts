@@ -27,7 +27,7 @@ export async function createFolder(formData: FormData): Promise<void> {
       user_id: user.id
     });
   if (error) {
-      console.error('フォルダの作成に失敗しました:', error);
+    console.error('フォルダの作成に失敗しました:', error);
   }
 
   revalidatePath('/folders');
@@ -41,7 +41,7 @@ export async function deleteFolder(folderId: string) {
     .getUser();
   const user = data.user;
   if (!user || userError) {
-      redirect('/login');
+    redirect('/login');
   }
 
 

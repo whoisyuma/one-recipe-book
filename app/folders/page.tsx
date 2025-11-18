@@ -34,7 +34,7 @@ export default async function FoldersPage() {
               className="flex flex-col items-center justify-start w-full px-3 md:px-0"
             >
               <img 
-                src="/folder-icon.svg" 
+                src="/icons/vivid-folder.svg" 
                 alt="フォルダアイコン" 
                 className="w-20 h-20 md:w-25 md:h-25"
               />
@@ -51,7 +51,7 @@ export default async function FoldersPage() {
                   className="flex flex-col items-center justify-start w-full px-3 md:px-0"
                 >
                   <img 
-                    src="/folder-icon.svg" 
+                    src="/icons/vivid-folder.svg" 
                     alt="フォルダアイコン" 
                     className="w-20 h-20 md:w-25 md:h-25"
                   />

@@ -62,10 +62,10 @@
 ## デザイン
 
 ### モバイル版
-![モバイル版のデザイン例](/public/mockup1.png)
+![モバイル版のデザイン例](/public/images/mockup1.png)
 
 ### デスクトップ版
-![デスクトップ版のデザイン例](/public/mockup2.png)
+![デスクトップ版のデザイン例](/public/images/mockup2.png)
 
 ## 連絡先
 以下から気軽にご連絡ください：
@@ -136,10 +136,10 @@ A demo account is available so you can test all the features like posting, editi
 ## Design
 
 ### Mobile View  
-![Mobile Mockup](/public/mockup1.png)
+![Mobile Mockup](/public/images/mockup1.png)
 
 ### Desktop View  
-![Desktop Mockup](/public/mockup2.png)
+![Desktop Mockup](/public/images/mockup2.png)
 
 ## Contact
 

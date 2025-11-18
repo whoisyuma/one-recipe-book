@@ -20,7 +20,7 @@ export async function updateRecipe(formData: FormData) {
     .auth
     .getUser();
   if (!user || userError) {
-      redirect('/login');
+    redirect('/login');
   }
 
   const { error } = await supabase

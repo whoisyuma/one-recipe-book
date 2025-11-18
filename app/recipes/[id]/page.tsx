@@ -72,7 +72,8 @@ export default async function RecipeDetailPage({ params }: PageProps) {
               {recipe.title}
             </h1>
             <div className='flex justify-end md:justify-normal items-center'>
-              <img src="/folder-icon2.svg"
+              <img
+                src="/icons/black-folder.svg"
                 alt="フォルダ画像" 
                 className='w-4 h-4 md:w-6 md:h-6'
               />

@@ -16,7 +16,6 @@ export async function createRecipe(formData: FormData) {
   const { data: { user }, error: userError } = await supabase
     .auth
     .getUser();
-
   if (!user || userError) {
     redirect('/login');
   }
@@ -33,7 +32,6 @@ export async function createRecipe(formData: FormData) {
       steps,
       image_url: imageUrl,
   });
-
   if (error) {
     console.error('DB Insert Error', error);
     return { error: 'レシピの保存に失敗しました。'};
@@ -41,6 +39,7 @@ export async function createRecipe(formData: FormData) {
 
   revalidatePath('/folders');
   revalidatePath('/recipes');
+  
   if (finalFolderId) {
     revalidatePath(`/folders/${finalFolderId}`);
   }
